@@ -3,7 +3,7 @@
 - name: Setup sysctl configuration
   sysctl:
     name: '{{item.name}}'
-    value: '{{ item.value }}'
+    value: '{{ item.value|default(None) }}'
     ignoreerrors: '{{ item.ignoreerrors|default(False) }}'
     reload: '{{ item.reload|default(True) }}'
     state: '{{ item.state|default("present") }}'

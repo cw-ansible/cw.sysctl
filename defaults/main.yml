@@ -1,5 +1,14 @@
 ---
 
+## List of sysctl variables.
+#
+# Each item must be suitable for the ansible sysctl module.
+#
+# See: ansible-doc sysctl
+#
+# Required items are:
+#  - name
+
 procps_values:
   - name: vm.swappiness
     value: 10
