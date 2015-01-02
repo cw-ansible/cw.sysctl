@@ -1,0 +1,4 @@
+---
+
+- name: procps restart
+  service: name=procps state=restarted

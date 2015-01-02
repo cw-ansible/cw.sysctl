@@ -1,0 +1,11 @@
+---
+
+- name: copy sysctl persistant config
+  copy:
+    src='etc/sysctl.d/{{item}}'
+    dest='/etc/sysctl.d/{{item}}'
+  notify: procps restart
+  with_items:
+  - 20-heavyload.conf
+  - 20-swappiness.conf
+    
