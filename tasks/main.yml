@@ -1,11 +1,14 @@
 ---
 
-- name: copy sysctl persistant config
-  copy:
-    src='etc/sysctl.d/{{item}}'
-    dest='/etc/sysctl.d/{{item}}'
-  notify: procps restart
-  with_items:
-  - 20-heavyload.conf
-  - 20-swappiness.conf
+- name: Setup sysctl configuration
+  sysctl:
+    name: '{{item.name}}'
+    value: '{{ item.value }}'
+    ignoreerrors: '{{ item.ignoreerrors|default(False) }}'
+    reload: '{{ item.reload|default(True) }}'
+    state: '{{ item.state|default("present") }}'
+    sysctl_file: '{{ item.sysctl_file|default("/etc/sysctl.d/ansible.conf") }}'
+    sysctl_set: '{{ item.sysctl_set|default(False) }}'
+  with_items: procps_values
+  when: procps_values is defined
     
