@@ -13,6 +13,10 @@ procps_values:
   - name: vm.swappiness
     value: 10
     sysctl_file: '/etc/sysctl.d/20-swappiness.conf'
+  # ignore hung task messages
+  - name: kernel.hung_task_timeout_secs
+    value: 0
+    sysctl_file: '/etc/sysctl.d/20-hung-tasks.conf'
     # more files and shared memory
   - name: fs.file-max
     value: 2097152
